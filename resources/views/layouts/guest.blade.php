@@ -1,30 +1,53 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<header class="bg-gradient-to-b from-orange-500 to-orange-600 px-10 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="flex text-3xl font-semibold items-center">
+            <a href="/">
+                <img src="/storage/img/epic-slice-logo.png" alt="Epic Slice Logo" class="h-24">
+            </a>
+            <a href="/">
+                <span class="text-orange-400">Epic</span>
+                <span class="text-white">Slice</span>
+                <span class="text-orange-100">Express</span>
+            </a>
+        </h1>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
-        </div>
-    </body>
+        <nav class="space-x-6">
+            <a href="{{ route("menu.index")  }}"
+               class="bg-white text-orange-600 px-4 py-2 rounded-md hover:bg-orange-100 font-semibold transition">Menu</a>
+            @guest
+                <a href="{{ route("register") }}"
+                   class="bg-white text-orange-600 px-4 py-2 rounded-md hover:bg-orange-100 font-semibold transition">Register</a>
+                <a href="{{ route("login") }}"
+                   class="bg-white text-orange-600 px-4 py-2 rounded-md hover:bg-orange-100 font-semibold transition">Login</a>
+            @endguest
+            @auth
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit"
+                            class="bg-white text-orange-600 px-4 py-2 rounded-md hover:bg-orange-100 font-semibold transition">
+                        Logout
+                    </button>
+                </form>
+            @endauth
+        </nav>
+    </div>
+</header>
+
+<body class="bg-cover bg-center bg-no-repeat" style="background-image: url('/storage/img/background.png');">
+{{ $slot }}
+</body>
 </html>
