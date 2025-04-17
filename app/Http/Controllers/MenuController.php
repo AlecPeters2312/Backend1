@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -15,6 +14,7 @@ class MenuController extends Controller
     {
         $menus = Menu::all();
         return view('menu.index', compact('menus'));
+        // compact maakt een array met de waardes van $menus om data naar een view te sturen
     }
 
     /**
@@ -35,8 +35,10 @@ class MenuController extends Controller
             "price" => "required|numeric",
             "description" => "required",
         ]);
+        // controleert of de gegevens ingevuld zijn en voor prijs of het een getal is
 
         Menu::create($request->all());
+        // met de request slaat hij alles wat is ingevuld op in de database
         return redirect()->route('menu.index');
     }
 
@@ -46,6 +48,7 @@ class MenuController extends Controller
     public function show(Menu $menu)
     {
         return view('menu.show', compact('menu'));
+        // er wordt een item met het id meegegeven die doormiddel van compact gestuurd wordt naar de show view
     }
 
     /**
@@ -54,6 +57,7 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         return view('menu.edit', compact('menu'));
+        // net als bij show haalt het een item op die hij doorstuurt naar de edit view om de gegevens ervan te zien
     }
 
     /**
@@ -77,6 +81,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         $menu->delete();
+        // haalt het id op via een form en verwijderd dat item uit de database
         return redirect()->route('menu.index');
     }
 }

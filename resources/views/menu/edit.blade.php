@@ -3,6 +3,7 @@
           class="space-y-6 space-x-6 flex justify-center items-center flex-col">
         @csrf
         @method('PUT')
+        {{--standaard is er geen put method beschikbaar dus hiermee vertel je laravel het te behandelen als een put method--}}
         <input type="text" name="name" value="{{ $menu->name }}">
         <input type="text" name="description" value="{{ $menu->description }}">
         <input type="text" name="price" value="{{ $menu->price }}">

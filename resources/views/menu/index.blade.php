@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="container mx-auto p-6">
-        @if(auth()->check() && auth()->user() && auth()->user()->is_admin)
+        @if(auth()->check() && auth()->user()->is_admin)
 
             <div class="mb-6 text-center">
                 <a href="{{ route("menu.create") }}"
@@ -20,13 +20,14 @@
                         <p class="text-xl font-bold mt-4 bg-red-600 px-3 py-1 rounded-lg inline-block">
                             € {{ $menu->price }}</p>
 
-                        @if(auth()->check() && auth()->user() && auth()->user()->is_admin)
+                        @if(auth()->check() && auth()->user()->is_admin)
                             <div class="py-4 space-x-4">
                                 <a href="{{ url('menu/'.$menu->id.'/edit') }}"
                                    class="px-3 py-1 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600">Edit</a>
                                 <form action="{{ url('menu/'.$menu->id) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
+                                    {{--in standaard html bestaat geen delete maar laravel weet hierdoor dat het een delete request is--}}
                                     <button type="submit"
                                             class="px-3 py-1 bg-red-500 text-white rounded-lg shadow hover:bg-red-600">
                                         Delete

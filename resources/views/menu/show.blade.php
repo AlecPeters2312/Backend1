@@ -13,10 +13,10 @@
                 <h2 class="text-3xl font-bold mt-4">{{ $menu->name }}</h2>
                 <p class="mt-2 text-sm">{{ $menu->description }}</p>
                 <p class="text-xl font-bold mt-4 bg-red-600 px-3 py-1 rounded-lg inline-block">
-                    € {{ number_format($menu->price, 2, ',', '.') }}
+                    € {{ $menu->price }}
                 </p>
 
-                @if(auth()->check() && auth()->user() && auth()->user()->is_admin)
+                @if(auth()->check() && auth()->user()->is_admin)
                     <div class="mt-6">
                         <a href="{{ url('menu/'.$menu->id.'/edit') }}"
                            class="px-4 py-2 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600">

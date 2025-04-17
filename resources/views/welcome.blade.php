@@ -6,20 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Epic Slice Express</title>
 
-    <!-- Tailwind CSS -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
     @endif
 
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 
 <x-guest-layout>
 
-    <!-- Landing Intro Section -->
     <div class="flex justify-center items-center space-x-2 text-center py-20 flex-wrap">
         <h1 class="text-white text-6xl font-semibold">Een</h1>
         <h1 class="text-orange-400 text-6xl font-semibold">smaak</h1>
@@ -29,7 +26,6 @@
         <h1 class="text-white text-6xl font-semibold">!</h1>
     </div>
 
-    <!-- Bestel Optie Form -->
     <form id="bestel-optie" action="postcode-toevoegen.php" method="POST" class="w-full max-w-lg mx-auto">
         <div class="adres-box flex items-center bg-white p-4 rounded-md shadow-md mb-4">
             <i class="fa-solid fa-location-dot text-orange-600 mr-4"></i>
@@ -52,7 +48,5 @@
             type="submit" value="Bevestig">
     </form>
 
-
-    <!-- Footer Section -->
 </x-guest-layout>
 </html>
